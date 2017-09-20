@@ -1,0 +1,11 @@
+C:\Dev\ElementAPISolution\ElementAPI\bin\Debug\netcoreapp2.0\ElementAPI.deps.json
+C:\Dev\ElementAPISolution\ElementAPI\bin\Debug\netcoreapp2.0\ElementAPI.runtimeconfig.json
+C:\Dev\ElementAPISolution\ElementAPI\bin\Debug\netcoreapp2.0\ElementAPI.runtimeconfig.dev.json
+C:\Dev\ElementAPISolution\ElementAPI\bin\Debug\netcoreapp2.0\ElementAPI.dll
+C:\Dev\ElementAPISolution\ElementAPI\obj\Debug\netcoreapp2.0\ElementAPI.csprojResolveAssemblyReference.cache
+C:\Dev\ElementAPISolution\ElementAPI\obj\Debug\netcoreapp2.0\ElementAPI.csproj.CoreCompileInputs.cache
+C:\Dev\ElementAPISolution\ElementAPI\obj\Debug\netcoreapp2.0\ElementAPI.AssemblyInfoInputs.cache
+C:\Dev\ElementAPISolution\ElementAPI\obj\Debug\netcoreapp2.0\ElementAPI.AssemblyInfo.cs
+C:\Dev\ElementAPISolution\ElementAPI\bin\Debug\netcoreapp2.0\ElementAPI.pdb
+C:\Dev\ElementAPISolution\ElementAPI\obj\Debug\netcoreapp2.0\ElementAPI.dll
+C:\Dev\ElementAPISolution\ElementAPI\obj\Debug\netcoreapp2.0\ElementAPI.pdb
