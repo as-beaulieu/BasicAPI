@@ -45,7 +45,7 @@ namespace ElementAPI.Data
                     Orbit = 1.00001742096F, //In years
                     SolarDay = 1.0F, //In Days
                     Radius = 6371.0F, //In Kilometers
-                    //Mass = 330110000000000000000000, //4.8675x10^24 kg
+                    Mass = 5.97237E24, //In Kilograms
                     Gravity = 9.807F, //In m/s^2
                     Moons = new List<MoonModel>()
                     {
@@ -55,6 +55,64 @@ namespace ElementAPI.Data
                             Name = "The Moon",
                             Description = "Some text"
                         }
+                    }
+                },
+                new PlanetModel()
+                {
+                    Position = 4,
+                    Name = "Mars",
+                    //Distance = , //In Kilometers
+                    Orbit = 1.8808F, //In years
+                    //SolarDay = F, //In Days
+                    Radius = 2289.5F, //In Kilometers
+                    Mass = 6.4171E23, //In Kilograms
+                    Gravity = 3.711F, //In m/s^2
+                    Moons = new List<MoonModel>()
+                    {
+                        new MoonModel()
+                        {
+                            Position = 1,
+                            Name = "Phobos",
+                            Description = "Some text"
+                        },
+                        new MoonModel()
+                        {
+                            Position = 2,
+                            Name = "Deimos",
+                            Description = "Some text"
+                        },
+                    }
+                },
+                new PlanetModel()
+                {
+                    Position = 5,
+                    Name = "Jupiter",
+                    //Distance = , //In Kilometers
+                    Orbit = 11.8618F, //In years
+                    //SolarDay = F, //In Days
+                    Radius = 69911.0F, //In Kilometers
+                    Mass = 1.8986E27, //In Kilograms
+                    Gravity = 24.79F, //In m/s^2
+                    Moons = new List<MoonModel>()
+                    {
+                        new MoonModel()
+                        {
+                            Position = 1,
+                            Name = "Metis",
+                            Description = "Discovered by Voyager I"
+                        },
+                        new MoonModel()
+                        {
+                            Position = 2,
+                            Name = "Adrastea",
+                            Description = "Discovered by Voyager 2"
+                        },
+                        new MoonModel()
+                        {
+                            Position = 3,
+                            Name = "Amalthea",
+                            Description = "Some text"
+                        },
                     }
                 },
 

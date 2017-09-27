@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElementAPI.Models
 {
-    //Use different models for Creating, for updating, and returning resources
-    public class LandmarkModelCreation
+    public class LandmarkModelUpdate
     {
         [Required(ErrorMessage = "Need a real name.")]
         [MaxLength(25)]

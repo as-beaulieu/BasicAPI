@@ -36,11 +36,6 @@ namespace ElementAPI.Controllers
         public IActionResult CreateLandmark (int cityId,
             [FromBody] LandmarkModelCreation landmark)
         {
-            if(cityId == null)
-            {
-                return BadRequest();
-            }
-
             var city = CityDataStore.Current.Cities
                             .FirstOrDefault(c => c.Id == cityId);
 
@@ -74,5 +69,41 @@ namespace ElementAPI.Controllers
                     inputNewLandmark
                 });
         }
+        //END CreateLandmark()
+
+        [HttpPut("{cityId}/landmarks/{landmarkId}")]
+        public IActionResult UpdateLandmarkAll(
+            int cityId, 
+            int landmarkId,
+            [FromBody] LandmarkModelUpdate landmark)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var city = CityDataStore.Current.Cities
+                            .FirstOrDefault(c => c.Id == cityId);
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var landmarkFromData = city.Landmarks
+                                        .FirstOrDefault(l => l.Id == landmarkId);
+
+            if(landmarkFromData == null)
+            {
+                return NotFound();
+            }
+
+            landmarkFromData.Name = landmark.Name;
+            landmarkFromData.Description = landmark.Description;
+
+            return NoContent();
+        }
+        //END UpdateLandmark();
     }
 }
