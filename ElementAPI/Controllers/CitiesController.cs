@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ElementAPI.Data;
 using ElementAPI.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace ElementAPI.Controllers
 {
@@ -104,6 +105,53 @@ namespace ElementAPI.Controllers
 
             return NoContent();
         }
-        //END UpdateLandmark();
+        //END UpdateLandmarkAll();
+
+
+        //Remember: JSON for patch request needs both brackets: [{"op":"replace","path":"/(key)","value":(value)}]
+        [HttpPatch("{cityId}/landmarks/{landmarkId}")]
+        public IActionResult UpdateLandmarkPartial(
+            int cityId,
+            int landmarkId,
+            [FromBody] JsonPatchDocument<LandmarkModelUpdate> patchDoc)
+        {
+            if(patchDoc == null)
+            {
+                return BadRequest();
+            }
+
+            var city = CityDataStore.Current.Cities
+                                    .FirstOrDefault(c => c.Id == cityId);
+            if(city == null)
+            {
+                return NotFound();
+            }
+
+            var landmarkFromData = city.Landmarks
+                                        .FirstOrDefault(l => l.Id == landmarkId);
+            if(city == null)
+            {
+                return NotFound();
+            }
+
+            var landmarkToPatch = new LandmarkModelUpdate()
+            {
+                Name = landmarkFromData.Name,
+                Description = landmarkFromData.Description,
+            };
+
+            //
+            patchDoc.ApplyTo(landmarkToPatch, ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            landmarkFromData.Name = landmarkToPatch.Name;
+            landmarkFromData.Description = landmarkToPatch.Description;
+
+            return NoContent();
+        }
+        //END UpdateLandmarkPartial()
     }
 }
