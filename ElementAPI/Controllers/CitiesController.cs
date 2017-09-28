@@ -153,5 +153,30 @@ namespace ElementAPI.Controllers
             return NoContent();
         }
         //END UpdateLandmarkPartial()
+
+        [HttpDelete("{cityId}/landmarks/{landmarkId}")]
+        public IActionResult DeleteLandmark(
+            int cityId,
+            int landmarkId)
+        {
+            var city = CityDataStore.Current.Cities
+                                    .FirstOrDefault(c => c.Id == cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var landmarkFromData = city.Landmarks
+                                        .FirstOrDefault(l => l.Id == landmarkId);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            city.Landmarks.Remove(landmarkFromData);
+
+            return NoContent();
+        }
+        //END DeleteLandmark()
     }
 }
