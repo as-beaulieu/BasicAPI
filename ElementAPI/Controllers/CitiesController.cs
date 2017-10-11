@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using ElementAPI.Data;
 using ElementAPI.Models;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Logging;
 
 namespace ElementAPI.Controllers
 {
@@ -14,6 +15,13 @@ namespace ElementAPI.Controllers
     [Route("api/cities")]
     public class CitiesController : Controller
     {
+        private ILogger<CitiesController> _logger;
+
+        public CitiesController(ILogger<CitiesController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet()]
         public IActionResult Get()
         {
@@ -23,14 +31,24 @@ namespace ElementAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            //find element
-            var city = CityDataStore.Current.Cities
-                            .FirstOrDefault(c => c.Id == id);
-            if (city == null)
+            try
             {
-                return NotFound();
+                //find element
+                var city = CityDataStore.Current.Cities
+                                .FirstOrDefault(c => c.Id == id);
+                if (city == null)
+                {
+                    _logger.LogInformation($"City with id {id} wasn't found."); //String interpolation
+                    return NotFound();
+                }
+                return Ok(city);
             }
-            return Ok(city);
+            catch(Exception e)
+            {
+                _logger.LogCritical($"Exception while getting cities with id {id}.", e);
+                return StatusCode(500, "A problem happened while handling your request");//Caution! This information will go to the user
+            }
+            
         }
 
         [HttpPost("{cityId}/landmarks", Name = "GetLandmark")]
